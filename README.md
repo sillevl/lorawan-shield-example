@@ -22,6 +22,10 @@ RESET | D1 or A1 | yes, using dip switch
 DIO 0 | D2 or A2 | yes, using dip switch
 DIO 1 | D3 or AR | yes, using dip switch
 
+#### Pins DO and D1
+
+Some microcontroller boards like ST Nucleo have hardwired serial connections for the USB UART on the pins D0 and D1. Therefore it is impossible to combine UART communications over USB and the LoRaWAN Shield using D0 and D1. Use the dipswitches to change the configuration and use A0 and A1.
+
 ## Simple LoRaWAN library
 
 Note: This library is still in development
