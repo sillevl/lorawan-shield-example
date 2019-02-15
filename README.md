@@ -26,6 +26,20 @@ DIO 1 | D3 or AR | yes, using DIP switch
 
 Some microcontroller boards like ST Nucleo have hardwired serial connections for the USB UART on the pins D0 and D1. Therefore it is impossible to combine UART communications over USB and the LoRaWAN Shield using D0 and D1. Use the DIP switches to change the configuration and use A0 and A1.
 
+## Starting
+
+First of all you need to run `mbed deploy` so all dependencies are retrieved.
+
+Next setup your security keys in `main.cpp`..
+
+Compile the application for your target and with your preferred toolchain. For example for the FRDM K64F, using the GCC ARM compiler:
+
+```shell
+mbed compile -m K64F -t GCC_ARM
+```
+
+Open your favorite serial terminal application and connect to the serial device.
+
 ## Dependencies
 
 ### Simple LoRaWAN library
