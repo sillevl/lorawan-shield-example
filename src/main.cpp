@@ -7,7 +7,7 @@ using namespace SimpleLoRaWAN;
 
 Serial pc(USBTX, USBRX, 115200);
 
-Node node(config);
+Node node(keys, pins);
 
 int main(void)
 {
