@@ -63,7 +63,7 @@ Some microcontroller boards like ST Nucleo have hardwired serial connections for
 
 ## Settings
 
-You can change the LoRaWAN keys and the used device pinnames in the `src/settings.h` file.
+You can change the LoRaWAN keys and the used device pinnames in the `src/settings.h` file. By default, this file is not present. Copy/paste the `settings.example.h` file in the `src/` directory, and edit the settings accordingly. 
 
 ```cpp
 LoRaWANKeys keys = { 
