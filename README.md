@@ -61,6 +61,22 @@ You are able to adjust this pinmapping in the `src/settings.h` file. Don't forge
 
 Some microcontroller boards like ST Nucleo have hardwired serial connections for the USB UART on the pins D0 and D1. Therefore it is impossible to combine UART communications over USB and the LoRaWAN Shield using D0 and D1. Use the DIP switches to change the configuration and use A0 and A1.
 
+## Settings
+
+You can change the LoRaWAN keys and the used device pinnames in the `src/settings.h` file.
+
+```cpp
+LoRaWANKeys keys = { 
+    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },         // devEui
+    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },         // appEui
+    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } // appKey
+};
+```
+
+```cpp
+Pinmapping pins = { D11, D12, D13, A0, A1, D2, D3 };  // miso, mosi, clk, nss, reset, dio0, dio1
+```
+
 ## Dependencies
 
 ### Simple LoRaWAN library
