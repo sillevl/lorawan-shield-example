@@ -28,6 +28,8 @@ Open your favorite serial terminal application and connect to the serial device.
 
 The LoRaWAN Shield, developed at VIVES. Is an Arduino compatible board that houses an RFM95W LoRaWAN transceiver and a small EEPROM. The shield can be used on every Mbed board that has an Arduino compatible header layout.
 
+![LoRaWAN Shield](img/lorawan_shield.png)
+
 ### Pin Mapping
 
 The LoRaWAN Shield uses some fixed pins for SPI, together with some configurable DIP switches at the back of the shield to configure a different mapping. This feature is available to be compatible with different microcontroller boards and other sensor shields.
