@@ -8,16 +8,17 @@ This example will send a single byte every 30 seconds. After each transmit, the 
 
 Clone the project, and install library dependencies.
 
-```
+```shell
 git clone git@github.com:sillevl/lorawan-shield-example.git
 cd lorawan-shield-example
 mbed deploy
 ```
 
-Next setup your LoRaWAN security keys in `src/settings.h`..
+Next setup your LoRaWAN security keys in `src/settings.h`.
+
 You can now compile and run the application on your embedded board using:
 
-```
+```shell
 mbed compile -f
 ```
 
@@ -29,12 +30,12 @@ The LoRaWAN Shield, developed at VIVES. Is an Arduino compatible board that hous
 
 ### Pin Mapping
 
-The LoRaWAN Shield uses some fixed pins for SPI, together with some configurable DIP switchers at the bottom to configure different mapping. This feature is available to be compatible with different microcontroller boards and other sensor shields.
+The LoRaWAN Shield uses some fixed pins for SPI, together with some configurable DIP switches at the back of the shield to configure a different mapping. This feature is available to be compatible with different microcontroller boards and other sensor shields.
 
 Signal | Pin | configurable
 --- | --- | ---
 MISO | D11 | no
-MISO | D12 | no
+MOSI | D12 | no
 CLK | D13 | no
 NSS | D0 or A0 | yes, using DIP switch
 RESET | D1 or A1 | yes, using DIP switch
@@ -43,17 +44,17 @@ DIO 1 | D3 or AR | yes, using DIP switch
 
 #### Default pinmap
 
-This example uses the followin pinmapping by default:
+This example uses the following pinmapping by default:
 
-Signal | Default pin 
+Signal | Default pin
 --- | ---
-MISO | D11 
-MISO | D12 
+MISO | D11
+MOSI | D12
 CLK | D13
-NSS | A0 
-RESET | A1 
-DIO 0 | D2 
-DIO 1 | D3 
+NSS | A0
+RESET | A1
+DIO 0 | D2
+DIO 1 | D3
 
 You are able to adjust this pinmapping in the `src/settings.h` file. Don't forget to adjust the DIP switches accordingly.
 
@@ -63,10 +64,10 @@ Some microcontroller boards like ST Nucleo have hardwired serial connections for
 
 ## Settings
 
-You can change the LoRaWAN keys and the used device pinnames in the `src/settings.h` file. By default, this file is not present. Copy/paste the `settings.example.h` file in the `src/` directory, and edit the settings accordingly. 
+You can change the LoRaWAN keys and the used device pin names in the `src/settings.h` file. By default, this file is not present. Copy/paste the `settings.example.h` file in the `src/` directory, and edit the settings accordingly.
 
 ```cpp
-LoRaWANKeys keys = { 
+LoRaWANKeys keys = {
     { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },         // devEui
     { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },         // appEui
     { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } // appKey
