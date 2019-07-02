@@ -8,4 +8,4 @@ SimpleLoRaWAN::LoRaWANKeys keys = {
     { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } // appKey
 };
 
-SimpleLoRaWAN::Pinmapping pins = { D11, D12, D13, A0, A1, D2, D3 };  // miso, mosi, clk, nss, reset, dio0, dio1
+SimpleLoRaWAN::Pinmapping pins = { D11, D12, D13, A0, A1, D2, D3 };  // mosi, miso, clk, nss, reset, dio0, dio1

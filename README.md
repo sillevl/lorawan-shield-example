@@ -34,8 +34,8 @@ The LoRaWAN Shield uses some fixed pins for SPI, together with some configurable
 
 Signal | Pin | configurable
 --- | --- | ---
-MISO | D11 | no
-MOSI | D12 | no
+MOSI | D11 | no
+MISO | D12 | no
 CLK | D13 | no
 NSS | D0 or A0 | yes, using DIP switch
 RESET | D1 or A1 | yes, using DIP switch
@@ -48,8 +48,8 @@ This example uses the following pinmapping by default:
 
 Signal | Default pin
 --- | ---
-MISO | D11
-MOSI | D12
+MOSI | D11
+MISO | D12
 CLK | D13
 NSS | A0
 RESET | A1
@@ -75,7 +75,7 @@ LoRaWANKeys keys = {
 ```
 
 ```cpp
-Pinmapping pins = { D11, D12, D13, A0, A1, D2, D3 };  // miso, mosi, clk, nss, reset, dio0, dio1
+Pinmapping pins = { D11, D12, D13, A0, A1, D2, D3 };  // mosi, miso, clk, nss, reset, dio0, dio1
 ```
 
 ## Dependencies
