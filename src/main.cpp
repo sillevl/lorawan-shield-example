@@ -21,6 +21,6 @@ int main(void)
     message.addUint8(counter++);
     node.send(message.getMessage(), message.getLength());
     pc.printf("Message sent. counter: %d\r\n", counter);
-    wait(30.0);
+    ThisThread::sleep_for(30 * 1000);
   }
 }
