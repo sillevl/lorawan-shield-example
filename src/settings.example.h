@@ -1,6 +1,6 @@
 #pragma once
 
-#include "config.h"
+#include "simple-lorawan-config.h"
 
 SimpleLoRaWAN::LoRaWANKeys keys = { 
     { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },         // devEui

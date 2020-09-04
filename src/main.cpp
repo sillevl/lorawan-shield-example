@@ -5,14 +5,13 @@
 
 using namespace SimpleLoRaWAN;
 
-Serial pc(USBTX, USBRX, 115200);
+BufferedSerial pc(USBTX, USBRX, 115200);
 
 Node node(keys, pins);
 
 int main(void)
 {
-  pc.baud(115200);
-  pc.printf("\r\n*** Starting LoRaWAN Shield Example ***\r\n");
+  printf("\r\n*** Starting LoRaWAN Shield Example ***\r\n");
   
   int counter = 0;
 
@@ -20,7 +19,7 @@ int main(void)
     LoRaMessage message;
     message.addUint8(counter++);
     node.send(message.getMessage(), message.getLength());
-    pc.printf("Message sent. counter: %d\r\n", counter);
-    ThisThread::sleep_for(30 * 1000);
+    printf("Message sent. counter: %d\r\n", counter);
+    ThisThread::sleep_for(30s);
   }
 }
