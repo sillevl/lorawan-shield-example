@@ -1,13 +1,10 @@
 #include "mbed.h"
 #include "Simple-LoRaWAN.h"
 #include "LoRaMessage.h"
-#include "settings.h"
 
 using namespace SimpleLoRaWAN;
 
-BufferedSerial pc(USBTX, USBRX, 115200);
-
-Node node(keys, pins);
+Node node;
 
 int main(void)
 {

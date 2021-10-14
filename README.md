@@ -16,7 +16,7 @@ cd lorawan-shield-example
 mbed deploy
 ```
 
-Next setup your LoRaWAN security keys in `src/settings.h`.
+Next setup your LoRaWAN security keys in `mbed_app.json`.
 
 You can now compile and run the application on your embedded board using:
 
@@ -28,18 +28,26 @@ Open your favorite serial terminal application and connect to the serial device.
 
 ## Settings
 
-You can change the LoRaWAN keys and the used device pin names in the `src/settings.h` file. By default, this file is not present. Copy/paste the `settings.example.h` file in the `src/` directory, and edit the settings accordingly.
+You can change the LoRaWAN keys and the used device pin names in the `mbed_app.json` file. You can change or edit the values of the settings accordingly to your needs.
 
-```cpp
-LoRaWANKeys keys = {
-    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },         // devEui
-    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },         // appEui
-    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } // appKey
-};
+LoRaWAN Configuration:
+
+```json
+"lora.device-eui": "{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }",
+"lora.application-eui": "{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }",
+"lora.application-key": "{ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }",
 ```
 
-```cpp
-Pinmapping pins = { D11, D12, D13, A0, A1, D2, D3 };  // mosi, miso, clk, nss, reset, dio0, dio1
+Pinmappings:
+
+```json
+"sx1276-lora-driver.spi-mosi":       "ARDUINO_UNO_D11",
+"sx1276-lora-driver.spi-miso":       "ARDUINO_UNO_D12",
+"sx1276-lora-driver.spi-sclk":       "ARDUINO_UNO_D13",
+"sx1276-lora-driver.spi-cs":         "ARDUINO_UNO_A0",
+"sx1276-lora-driver.reset":          "ARDUINO_UNO_A1",
+"sx1276-lora-driver.dio0":           "ARDUINO_UNO_D2",
+"sx1276-lora-driver.dio1":           "ARDUINO_UNO_D3",
 ```
 
 ## LoRaWAN Shield
@@ -106,7 +114,7 @@ RESET | NC (if R6 pull-up resistor)
 DIO 0 | D2
 DIO 1 | D3
 
-You are able to adjust this pinmapping in the `src/settings.h` file. Don't forget to adjust the DIP switches accordingly.
+You are able to adjust this pinmapping in the `mbed_app.json` file. Don't forget to adjust the DIP switches accordingly.
 
 #### Pins DO and D1
 
