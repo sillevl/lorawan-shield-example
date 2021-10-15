@@ -50,6 +50,104 @@ Pinmappings:
 "sx1276-lora-driver.dio1":           "ARDUINO_UNO_D3",
 ```
 
+## Node instance
+
+The `Node` instance has 3 ways to initialize:
+
+* Runtime LoRaWAN keys and pinmappings
+* Runtime LoRaWAN keys and compiletime pinmappings
+* Compiletime LoRaWAN keys and pinmappings
+
+### Runtime configuration
+
+Provide all confugration (LoRaWAN keys and pinmappings) at runtime. This is the most flexible option.
+
+```cpp
+LoRaWANKeys keys = {
+    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },         // devEui
+    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },         // appEui
+    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } // appKey
+};
+
+Pinmapping pins = { D11, D12, D13, A0, A1, D2, D3 };  // mosi, miso, clk, nss, reset, dio0, dio1
+
+Node node(keys, pins);
+
+uint8_t data[] = { 0xDE, 0xAD, 0xBE, 0xEF };
+node.send(data, sizeof(data));
+```
+
+### Runtime LoRaWAN keys
+
+Provide LoRaWAN keys at runtime. This could be used when the keys are stored in a flash memory and are not part of the binary.
+This enables using multiple hardware boards with a single codebase.
+
+Pinmappings are provided using the `mbed_app.json` configuration.
+
+```cpp
+LoRaWANKeys keys = {
+    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },         // devEui
+    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },         // appEui
+    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } // appKey
+};
+
+Node node(keys);
+
+uint8_t data[] = { 0xDE, 0xAD, 0xBE, 0xEF };
+node.send(data, sizeof(data));
+```
+
+### Compiletime configuration
+
+LoraWAN keys and pinmappings are provided using the `mbed_app.json` configuration.
+
+```cpp
+Node node;
+
+uint8_t data[] = { 0xDE, 0xAD, 0xBE, 0xEF };
+node.send(data, sizeof(data));
+```
+
+## Blocking initialisation
+
+By default when creating a `Node` instance, the constructor will block further execution of code until the LoRaWAN connection is set up correctly.
+You can override this behaviour by appending a boolean argument at the end of the constructor arguments.
+
+```cpp
+Node node(false);
+// continue code execution without waiting for a succesful connection
+// do some other stuff here and check connection befor sending data
+uint8_t data[] = { 0xDE, 0xAD, 0xBE, 0xEF };
+node.send(data, sizeof(data));
+```
+
+## Example
+
+```cpp
+#include "mbed.h"
+#include "Simple-LoRaWAN.h"
+#include "LoRaMessage.h"
+
+using namespace SimpleLoRaWAN;
+
+Node node;
+
+int main(void)
+{
+  printf("\r\n*** Starting LoRaWAN Shield Example ***\r\n");
+  
+  int counter = 0;
+
+  while(true) {
+    LoRaMessage message;
+    message.addUint8(counter++);
+    node.send(message.getMessage(), message.getLength());
+    printf("Message sent. counter: %d\r\n", counter);
+    ThisThread::sleep_for(30s);
+  }
+}
+```
+
 ## LoRaWAN Shield
 
 The LoRaWAN Shield, developed at VIVES. Is an Arduino compatible board that houses an RFM95W LoRaWAN transceiver and a small EEPROM. The shield can be used on every Mbed board that has an Arduino compatible header layout.
